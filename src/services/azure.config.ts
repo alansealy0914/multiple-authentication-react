@@ -11,6 +11,7 @@ interface MsalConfig {
   }
 }
 
+//Azure config;
 export const msalConfig = {
     auth: {
       clientId: import.meta.env.VITE_AZURE_CLIENT_ID,

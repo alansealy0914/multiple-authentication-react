@@ -5,8 +5,8 @@
 }
 
 body, main {
-    background-color: #0f0f20;
-    color: #f6f6f6;
+    background-color: rgb(192, 192, 192);
+    color: rgb(58, 57, 57);
 }
 
 input {

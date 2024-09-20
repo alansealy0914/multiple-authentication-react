@@ -9,7 +9,8 @@ import { Link, useLocation} from "react-router-dom";
 
 export function Login(){
 
-    const [authUser, setAuthUser] = useState<AuthUser>({ email: 'asealy@k.systems', password: '123456'});
+    const [authUser, setAuthUser] = useState<AuthUser>({ email: 'asealy@kana.systems', password: '123456'});
+    //const [authUser, setAuthUser] = useState<AuthUser>();
     const { isAuthenticated, signIn } = useAuth();
     const navigate = useNavigate();
     const { setIsLoading } = useLoader();
@@ -29,6 +30,7 @@ export function Login(){
 
     }, []);
 
+    // using EntraID authentication 
     useEffect(() => {
         setIsLoading(false);
         if(isAuthenticated){
@@ -40,6 +42,8 @@ export function Login(){
         signIn('AZURE');
     }
 
+
+    // using your own custom authentication 
     function handleSignInIntern(){
         if(!authUser.email) {
             alert('E-mail invalid')
@@ -53,25 +57,28 @@ export function Login(){
         signIn('INTERN', authUser);
     }
 
+    // using Google authentication
     /*function handleSignInGoogle(){
         signIn('GOOGLE');
     }*/
 
     return (
         <main className="login-page">
-           {/*<img src="src/assets/Kana-Wave-Logo-Auth.png"/>*/}
-            <h1 className="kanaTitle">Sign in to Kana Systems</h1>
-            <section>
-            
-                <aside className="sign-buttons">
-                    <a href="https://www.example.com">
+            <a href="https://login.microsoftonline.com/">
                     <button 
                         className="btn-sign-azure" 
                         disabled={!isAzureEnabled}
                         onClick={() => handleSignInAzure()}
                     >
                         <img src="src/assets/microsoft_logo.png"/>
-                    </button> Azure Entra ID </a>
+                    </button><p className="azurelink">Azure Entra ID</p>  </a>
+                   
+            <h1 className="kanaTitle">Sign in to Kana Systems</h1>
+            
+            <section>
+            
+                <aside className="sign-buttons">
+                    
                     {/*<button 
                         className="btn-sign-google"
                         disabled={!isGoogleEnabled} 
@@ -81,7 +88,7 @@ export function Login(){
                     </button>*/}
                 </aside>
 
-                <div>
+                <div> <img className="kanawavelogo" src="src/assets/KanaWaveLogo_no-back-ground.png"/>
                     <label htmlFor="email">E-mail:</label>
                     <input 
                         type="email" 
@@ -102,14 +109,14 @@ export function Login(){
 
                 <button className="btn-sign-intern" onClick={() => handleSignInIntern()}>Enter</button>
 
-                <footer>
+                {/*<footer>
                     {
                         !isAzureEnabled && <span>Azure clientId not informed on .env file</span>
                     }
-                    {
+                    /*{
                         !isGoogleEnabled && <span>Google clientId not informed on .env file</span>
                     }
-                </footer>
+                </footer>*/}
             </section>
 
             
