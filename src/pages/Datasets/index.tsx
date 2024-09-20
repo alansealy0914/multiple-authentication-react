@@ -1,11 +1,11 @@
 import { useAuth } from "../../hooks/useAuth";
 import './styles.css';
 
-export function Home(){
+export function Datasets(){
     const { signOut, getAuthMethodType, user } = useAuth();
     return (
         <main className="home-page">
-            <h1>Home</h1>
+            <h1>Datasets Page</h1>
             {
                 !user ? <h1>...</h1> 
                 : (
@@ -22,17 +22,17 @@ export function Home(){
                             <strong>{user.email}</strong>
                         </p>
                         <p>
-                            <span>Nome: </span>
+                            <span>Username: </span>
                             <strong>{user.username}</strong>
                         </p>
                         <p>
-                            <span>Autenticado com </span>
+                            <span>Authentication type:  </span>
                             <strong>{getAuthMethodType()}</strong>
                         </p>
                     </div>
                 )
             }
-            <button onClick={() => signOut()}>Sair</button>
+            <button onClick={() => signOut()}>Sign out</button>
         </main>
     );
 }

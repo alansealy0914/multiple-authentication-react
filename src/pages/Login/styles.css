@@ -5,10 +5,16 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-image: url(../../assets/background.png);
+    /* Center and scale the image nicely */
+    background-position: left;
+    background-repeat: no-repeat;
+  
 }
 
 .login-page section {
-    width: 600px;
+    width: 300px;
+    margin-left: 700px;
 }
 
 .login-page section div {
@@ -27,7 +33,7 @@
 
 .login-page .btn-sign-intern {
     width: 100%;
-    background-color: #E43F5A;
+    background-color: hsl(229, 75%, 57%);
     color: #fff;
 }
 
@@ -56,4 +62,9 @@
     grid-gap: 10px;
     align-items: flex-start;
     font-size: 0.8rem;
+}
+
+.kanaTitle {
+    color: #fff;
+    margin-left: 700px;
 }

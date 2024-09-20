@@ -36,7 +36,7 @@ export class AuthIntern implements IAuth {
     public getUser = async () => {
         const userStorage = await sessionStorage.getItem('@Auth.email');
         if(userStorage !== null) {
-            return { email: userStorage, username: 'User interno'};
+            return { email: userStorage, username: 'asealy'};
         }
         return undefined;
     }    

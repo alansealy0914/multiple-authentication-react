@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-route
 import Loading from "../components/Loading";
 import { useAuth } from "../hooks/useAuth";
 import { useLoader } from "../hooks/useLoader";
-import { Home } from "../pages/Home";
+import { Datasets } from "../pages/Datasets";
 import { Login } from "../pages/Login";
 import BodyRouter from "./BodyRouter";
 import { PrivateRoute } from "./private.routes";
@@ -17,10 +17,10 @@ export function AppRoutes(){
                 <Routes>
                     <Route path="" element={<Login />} />
                     <Route
-                        path="/home"
+                        path="/datasets"
                         element={
                             <PrivateRoute>
-                                <Home />
+                                <Datasets />
                             </PrivateRoute>
                         }
                     />

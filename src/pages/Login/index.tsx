@@ -5,11 +5,11 @@ import { AuthUser } from "../../context/Auth/auth.model";
 import { useAuth } from "../../hooks/useAuth";
 import { useLoader } from "../../hooks/useLoader";
 import './styles.css';
-
+import { Link, useLocation} from "react-router-dom";
 
 export function Login(){
 
-    const [authUser, setAuthUser] = useState<AuthUser>({ email: 'marcioc424@gmail.com', password: '123456'});
+    const [authUser, setAuthUser] = useState<AuthUser>({ email: 'asealy@k.systems', password: '123456'});
     const { isAuthenticated, signIn } = useAuth();
     const navigate = useNavigate();
     const { setIsLoading } = useLoader();
@@ -23,16 +23,16 @@ export function Login(){
             setIsAzureEnabled(true);
         }
 
-        if(import.meta.env.VITE_GOOGLE_CLIENT_ID) {
+        /*if(import.meta.env.VITE_GOOGLE_CLIENT_ID) {
             setIsGoogleEnabled(true);
-        }
+        }*/
 
     }, []);
 
     useEffect(() => {
         setIsLoading(false);
         if(isAuthenticated){
-            navigate('/home');
+            navigate('/datasets');
         }
     }, [isAuthenticated])
     
@@ -42,40 +42,43 @@ export function Login(){
 
     function handleSignInIntern(){
         if(!authUser.email) {
-            alert('E-mail não informado')
+            alert('E-mail invalid')
             return;
         };
 
         if(!authUser.password) {
-            alert('Senha não informada');
+            alert('password invalid');
             return;
         }
         signIn('INTERN', authUser);
     }
 
-    function handleSignInGoogle(){
+    /*function handleSignInGoogle(){
         signIn('GOOGLE');
-    }
+    }*/
 
     return (
         <main className="login-page">
-
+           {/*<img src="src/assets/Kana-Wave-Logo-Auth.png"/>*/}
+            <h1 className="kanaTitle">Sign in to Kana Systems</h1>
             <section>
+            
                 <aside className="sign-buttons">
+                    <a href="https://www.example.com">
                     <button 
                         className="btn-sign-azure" 
                         disabled={!isAzureEnabled}
                         onClick={() => handleSignInAzure()}
                     >
                         <img src="src/assets/microsoft_logo.png"/>
-                    </button>
-                    <button 
+                    </button> Azure Entra ID </a>
+                    {/*<button 
                         className="btn-sign-google"
                         disabled={!isGoogleEnabled} 
                         onClick={() => handleSignInGoogle()}
                     >
                         <img src="src/assets/google_logo.png"/>
-                    </button>
+                    </button>*/}
                 </aside>
 
                 <div>
@@ -89,7 +92,7 @@ export function Login(){
                 </div>
 
                 <div>
-                    <label htmlFor="password">Senha:</label>
+                    <label htmlFor="password">Password:</label>
                     <input 
                         type="password" 
                         name="password" 
@@ -97,7 +100,7 @@ export function Login(){
                         onChange={(e) => setAuthUser({...authUser, password: e.target.value })} />
                 </div>
 
-                <button className="btn-sign-intern" onClick={() => handleSignInIntern()}>Entrar</button>
+                <button className="btn-sign-intern" onClick={() => handleSignInIntern()}>Enter</button>
 
                 <footer>
                     {
